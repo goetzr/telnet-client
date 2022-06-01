@@ -1,4 +1,3 @@
-use clap::Parser;
 #[macro_use]
 extern crate log;
 
@@ -20,6 +19,7 @@ macro_rules! may_fail {
 fn main() {
     env_logger::init();
 
-    let cli = cli::Cli::parse();
-    let _server_sock = may_fail!(net::connect(&cli.ip_addr), "Failed to connect to the server");
+    let args = may_fail!(cli::parse_arguments(), "Failed to parse command line");
+    info!("Connecting to TELNET server at {}...", args.server_addr);
+    let _server_sock = may_fail!(net::connect(args.server_addr), "Failed to connect to the server");
 }

@@ -1,7 +1,7 @@
-use std::net::Ipv4Addr;
+use std::net::SocketAddrV4;
 use std::net::TcpStream;
 use std::io;
 
-pub fn connect(ip_addr: &Ipv4Addr) -> io::Result<TcpStream> {
-    TcpStream::connect((ip_addr.clone(), 23))
+pub fn connect(server_addr: SocketAddrV4) -> io::Result<TcpStream> {
+    TcpStream::connect(server_addr)
 }
