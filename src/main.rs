@@ -3,6 +3,8 @@ extern crate log;
 
 mod cli;
 mod net;
+mod telnet;
+mod client;
 
 macro_rules! may_fail {
     ($expr:expr, $msg:expr) => ({
