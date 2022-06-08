@@ -19,11 +19,9 @@ impl Client {
                 return;
             },
         };
-        let mut hex_string = String::new();
-        for i in 0..num_bytes_rcvd {
-            let hex_digits = format!("{:02X}", buf[i]);
-            hex_string.push_str(&hex_digits);
-        }
-        info!("Received data: {}", hex_string);
+        let data = &buf[..num_bytes_rcvd];
+        let data: Vec<_> = data.iter().map(|b| format!("{}", b)).collect();
+        let data_str = data.join(",");
+        info!("Received data: {}", data_str);
     }
 }
